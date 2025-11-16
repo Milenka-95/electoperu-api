@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface RegistroIncidenciaRepository extends JpaRepository<RegistroIncidencia, Long> {
     List<RegistroIncidencia> findByUsuarioId(Long usuarioId);
+    List<RegistroIncidencia> findByMesaId(Long mesaId);
+    List<RegistroIncidencia> findByEstado(String estado);
 }

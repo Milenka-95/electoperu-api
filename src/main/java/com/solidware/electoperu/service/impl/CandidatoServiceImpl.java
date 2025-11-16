@@ -31,7 +31,7 @@ public class CandidatoServiceImpl implements CandidatoService {
 
     @Override
     public Candidato update(Long id, Candidato candidato) {
-        candidato.setId(id);
+        candidato.setIdCandidato(id.intValue());
         return candidatoRepo.save(candidato);
     }
 

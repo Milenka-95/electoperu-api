@@ -1,6 +1,7 @@
 package com.solidware.electoperu.controller;
 
 import com.solidware.electoperu.entity.Departamento;
+import com.solidware.electoperu.service.DepartamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

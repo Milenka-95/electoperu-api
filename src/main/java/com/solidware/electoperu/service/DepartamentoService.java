@@ -29,7 +29,7 @@ public class DepartamentoService {
 
     @Transactional
     public Departamento update(Long id, Departamento d) {
-        d.setId(id);
+        d.setIdDepa(id.intValue());
         return repository.save(d);
     }
 
