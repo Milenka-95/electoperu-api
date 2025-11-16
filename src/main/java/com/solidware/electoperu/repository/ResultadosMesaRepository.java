@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ResultadosMesaRepository extends JpaRepository<ResultadosMesa, Long> {
     List<ResultadosMesa> findByMesaId(Long mesaId);
+    List<ResultadosMesa> findByCandidatoId(Long candidatoId);
 }

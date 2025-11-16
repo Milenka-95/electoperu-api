@@ -1,6 +1,7 @@
 package com.solidware.electoperu.controller;
 
 import com.solidware.electoperu.entity.MesaVotacion;
+import com.solidware.electoperu.repository.MesaVotacionRepository;
 import com.solidware.electoperu.service.MesaVotacionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,6 +18,7 @@ import java.util.List;
 public class MesaVotacionController {
 
     private final MesaVotacionService mesaVotacionService;
+    private final MesaVotacionRepository mesaVotacionRepository;
 
     @GetMapping
     @Operation(summary = "Listar todas las mesas de votación")
@@ -28,6 +30,19 @@ public class MesaVotacionController {
     @Operation(summary = "Obtener mesa por ID")
     public ResponseEntity<MesaVotacion> findById(@PathVariable Long id) {
         return ResponseEntity.ok(mesaVotacionService.findById(id));
+    }
+
+    @GetMapping("/codigo/{codigo}")
+    @Operation(summary = "Buscar mesa por código")
+    public ResponseEntity<MesaVotacion> findByCodigo(@PathVariable String codigo) {
+        return ResponseEntity.ok(mesaVotacionRepository.findByCodigo(codigo)
+                .orElseThrow(() -> new RuntimeException("Mesa no encontrada con código: " + codigo)));
+    }
+
+    @GetMapping("/local/{localId}")
+    @Operation(summary = "Listar mesas por local de votación")
+    public ResponseEntity<List<MesaVotacion>> findByLocal(@PathVariable Integer localId) {
+        return ResponseEntity.ok(mesaVotacionRepository.findByLocalId(localId));
     }
 
     @PostMapping

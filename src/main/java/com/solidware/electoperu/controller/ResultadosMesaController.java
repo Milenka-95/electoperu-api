@@ -1,6 +1,7 @@
 package com.solidware.electoperu.controller;
 
 import com.solidware.electoperu.entity.ResultadosMesa;
+import com.solidware.electoperu.repository.ResultadosMesaRepository;
 import com.solidware.electoperu.service.ResultadosMesaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ResultadosMesaController {
 
     private final ResultadosMesaService resultadosMesaService;
+    private final ResultadosMesaRepository resultadosMesaRepository;
 
     @GetMapping
     @Operation(summary = "Listar todos los resultados")
@@ -28,6 +30,18 @@ public class ResultadosMesaController {
     @Operation(summary = "Obtener resultado por ID")
     public ResponseEntity<ResultadosMesa> findById(@PathVariable Long id) {
         return ResponseEntity.ok(resultadosMesaService.findById(id));
+    }
+
+    @GetMapping("/mesa/{mesaId}")
+    @Operation(summary = "Obtener resultados por mesa")
+    public ResponseEntity<List<ResultadosMesa>> findByMesa(@PathVariable Long mesaId) {
+        return ResponseEntity.ok(resultadosMesaRepository.findByMesaId(mesaId));
+    }
+
+    @GetMapping("/candidato/{candidatoId}")
+    @Operation(summary = "Obtener resultados por candidato")
+    public ResponseEntity<List<ResultadosMesa>> findByCandidato(@PathVariable Long candidatoId) {
+        return ResponseEntity.ok(resultadosMesaRepository.findByCandidatoId(candidatoId));
     }
 
     @PostMapping
