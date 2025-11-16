@@ -31,7 +31,7 @@ public class PartidoPoliticoServiceImpl implements PartidoPoliticoService {
 
     @Override
     public PartidoPolitico update(Long id, PartidoPolitico partido) {
-        partido.setId(id);
+        partido.setIdPartido(id.intValue());
         return partidoRepo.save(partido);
     }
 
